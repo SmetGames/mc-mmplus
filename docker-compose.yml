@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  minecraft-server:
+    build: .
+    image: itzg/minecraft-server
+    container_name: mechanical-mastery-plus
+    environment:
+      CF_API_KEY: '$2a$10$3iDVGIPkrjqtJTc3eBOKl.OrdzFTGRSClsmL0eElP8nRaqQKZF7pO'
+      CF_SLUG: 'mechanical-mastery-plus'
+      EULA: 'TRUE'
+      TYPE: 'AUTO_CURSEFORGE'
+      VERSION: '1.18.2'
+      ENABLE_ROLLING_LOGS: 'true'
+      MEMORY: ''
+      JVM_XX_OPTS: '-XX:+UseContainerSupport -XX:MaxRAMPercentage=75'
+    volumes:
+      - ./data:/data
+    ports:
+      - '25567:25565'
+      - '19567:19565'
+    restart: always
+    mem_limit: 6g
